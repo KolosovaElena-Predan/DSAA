@@ -1,0 +1,4 @@
+﻿  Algorithm_analysis.cpp
+C:\Users\kolos\Desktop\ООП\Примеры для конспектов\Algorithm_analysis\Algorithm_analysis.cpp(77,32): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\kolos\Desktop\ООП\Примеры для конспектов\Algorithm_analysis\Algorithm_analysis.cpp(87,32): warning C4018: <: несоответствие типов со знаком и без знака
+  Algorithm_analysis.vcxproj -> C:\Users\kolos\Desktop\ООП\Примеры для конспектов\Algorithm_analysis\x64\Debug\Algorithm_analysis.exe
