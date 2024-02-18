@@ -182,10 +182,111 @@ void Test_Search() {
 }
 
 
+template <typename T>
+/// находит заданнный элемент в массиве методом бинарного поиска
+/// \param arr массив
+/// \param n размер массива
+/// \param key элемент, который необходимо найти
+/// \return первое вхождение key в arr; если его нет, то -1
+int Search_bin(T* arr, unsigned n, T key) {
+    //Bubble_sort(arr, n);
+
+    bool flag = false;
+    int left = 0; // левая граница
+    int right = n-1; // правая граница
+    int middle; //индекс середины массива
+
+    while ((left <= right) && (flag != true)) {
+        middle = (left + right) / 2; // определяем индекс середины
+        if (arr[middle] == key) {
+            flag = true; //проверяем ключ со серединным элементом
+            return middle;
+        }
+        //узнаём какую часть нужно отбросить
+        if (arr[middle] > key) 
+            right = middle - 1;
+        else left = middle + 1;
+    }
+    return -1;
+}
+
+void Test_Search_bin() {
+    double* c = new double[3] {1, 2, 3};
+    assert(Search_bin(c, 3, 1.0) == 0);
+    delete[] c;
+
+    int* a = new int[4] {1, 2, 3, 4};
+    assert(Search_bin(a, 4, 3) == 2);
+    delete[] a;
+
+
+    char* n1 = new char[4] {'a', 'b', 'c', 'd'};
+    assert(Search(n1, 4, 'd') == 3);
+    delete[] n1;
+}
+
+template <typename T>
+/// пузырьковая сортировка по возрастанию
+/// \param arr массив
+/// \param n размер массива
+/// \return ничего, но сортирует по возрастанию arr
+void Bubble_sort(T* arr, unsigned n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j <(n-1); j++) {
+            if (arr[j] > arr[j + 1]) {
+                T b = arr[j]; // промежуточная переменная
+                arr[j] = arr[j + 1];
+                arr[j + 1] = b;
+            }
+        }
+    }
+}
+
+void Test_Bubble_sort() {
+    double* c = new double[3] {3, 2, 1};
+    Bubble_sort(c, 3);
+    assert(c[0] == 1.0);
+    assert(c[1] == 2.0);
+    assert(c[2] == 3.0);
+    delete[] c;
+
+    double* d = new double[3] {2, 3, 1};
+    Bubble_sort(d, 3);
+    assert(d[0] == 1.0);
+    assert(d[1] == 2.0);
+    assert(d[2] == 3.0);
+    delete[] d;
+
+    int* a = new int[3] {1, 6, 3};
+    Bubble_sort(a, 3);
+    assert(a[0] == 1);
+    assert(a[1] == 3);
+    assert(a[2] == 6);
+    delete[] a;
+
+    int* a1 = new int[3] {-1, -2, -6};
+    Bubble_sort(a1, 3);
+    assert(a1[0] == -6);
+    assert(a1[1] == -2);
+    assert(a1[2] == -1);
+    delete[] a1;
+
+    char* n = new char[4] {'d', 'c', 'b', 'a'};
+    Bubble_sort(n, 4);
+    assert(n[0] == 'a');
+    assert(n[1] == 'b');
+    assert(n[2] == 'c');
+    assert(n[3] == 'd');
+    delete[] n;
+}
+
+
 
 int main()
 {
     Test_checking_for_increasing();
     Test_сhecking_for_descending();
     Test_Search();
+    Test_Bubble_sort();
+    Test_Search_bin();
 }
