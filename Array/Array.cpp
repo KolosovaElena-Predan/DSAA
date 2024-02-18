@@ -130,6 +130,7 @@ void Test_сhecking_for_descending() {
 }
 
 
+
 // определение начального момента времени
 auto t0 = steady_clock::now();
 
@@ -143,7 +144,42 @@ auto t1 = steady_clock::now();
 auto delta = duration_cast<milliseconds>(t1 - t0);
 
 
+template <typename T>
+/// находит заданнный элемент в массиве методом последовательного поиска
+/// \param arr массив
+/// \param n размер массива
+/// \param key элемент, который необходимо найти
+/// \return первое вхождение key в arr; если его нет, то -1
+int Search(T* arr, unsigned n, T key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            return i;
+        }
+    }
+    return -1;
+}
 
+void Test_Search() {
+    double* c = new double[3] {1, 2, 3};
+    assert(Search(c, 3, 1.0) == 0);
+    delete[] c;
+
+    double* d = new double[3] {3, 2, 1};
+    assert(Search(d, 3, 2.0) == 1);
+    delete[] d;
+
+    int* a = new int[3] {1, 6, 3};
+    assert(Search(a, 3, 3) == 2);
+    delete[] a;
+
+    int* a1 = new int[3] {-1, -2, -6};
+    assert(Search(a1, 3, 4) == -1);
+    delete[] a1;
+
+    char* n1 = new char[4] {'d', 'c', 'b', 'a'};
+    assert(Search(n1, 4, 'c') == 1);
+    delete[] n1;
+}
 
 
 
@@ -151,4 +187,5 @@ int main()
 {
     Test_checking_for_increasing();
     Test_сhecking_for_descending();
+    Test_Search();
 }
