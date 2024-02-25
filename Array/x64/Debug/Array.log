@@ -1,15 +1,2 @@
 ﻿  Array.cpp
-C:\Users\kolos\Desktop\DSAA\Array\Array.cpp(154,23): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\kolos\Desktop\DSAA\Array\Array.cpp(164,5): message : выполняется компиляция ссылки на экземпляр шаблон функции "int Search<double>(T *,unsigned int,T)"
-          with
-          [
-              T=double
-          ]
-C:\Users\kolos\Desktop\DSAA\Array\Array.cpp(234,23): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\kolos\Desktop\DSAA\Array\Array.cpp(247,5): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Bubble_sort<double>(T *,unsigned int)"
-          with
-          [
-              T=double
-          ]
-C:\Users\kolos\Desktop\DSAA\Array\Array.cpp(235,27): warning C4018: <: несоответствие типов со знаком и без знака
-  Array.vcxproj -> C:\Users\kolos\Desktop\DSAA\Array\x64\Debug\Array.exe
+  Array.vcxproj -> F:\DSAA\Array\x64\Debug\Array.exe

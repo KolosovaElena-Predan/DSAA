@@ -31,11 +31,9 @@ void arr_output_to_file(const T* arr, unsigned n, const std::string& FileName) {
 }
 
 
-
-
 int main()
 {
-    int n = 3;
+    int n = 3; //размер массива
     double* arr = new double[n] {1, 2, 3};
     //double* arr = new double[n] {1, 3, 2};
     //double* arr = new double[n] {2, 1, 3};
@@ -83,7 +81,7 @@ int main()
 
     double max2 = min;
 
-    //находим максимум и второе число после него
+    //находим максимум и второе число после него и считаем сравнения
     for (unsigned int i = 1; i < n; i++) {
         if (arr[i] > max) {
             max2 = max;
@@ -100,7 +98,7 @@ int main()
 
     std::ofstream file;
     file.open("2.txt", std::ios::app);
-    file << std::endl<< std::endl<< "Кол-во сравнений: " << c << std::endl<< "Массив:";
+    file << std::endl<< std::endl<< "Кол-во сравнений: " << c << std::endl<< "Второй максимум: " <<max2<< std::endl << "Массив:";
     file.close();
 
     arr_output_to_file(arr, n, "2.txt");

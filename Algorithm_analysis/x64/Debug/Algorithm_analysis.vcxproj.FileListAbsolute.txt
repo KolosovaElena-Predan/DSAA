@@ -1,1 +1,2 @@
 C:\Users\kolos\Desktop\ООП\Примеры для конспектов\Algorithm_analysis\x64\Debug\Algorithm_analysis.exe
+F:\DSAA\Algorithm_analysis\x64\Debug\Algorithm_analysis.exe
