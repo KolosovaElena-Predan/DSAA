@@ -1,8 +1,18 @@
 ﻿///Автор: Колосова Е.К.
 //11. Написать функцию C(m,n) вычисления биномиальных коэффициентов.
+//протестировать стек
 
 #include <iostream>
 #include <assert.h>
+
+/// Измерение размера стека с помощью бесконечной рекурсии
+int StackSize(int& i)
+{
+    std::cout << i << "   ";
+    i += 1;
+    StackSize(i);
+    return 0;
+}
 
 ///Вычисляет биномиальный коэффициент
 /// \param m кол-во выбираемых объектов
@@ -27,12 +37,14 @@ void Test_C() {
 
 int main()
 {
-    Test_C();
+    /*Test_C();
     try {
         std::cout << C(2, 4);
     }
     catch (const std::invalid_argument& error) {
         std::cout << error.what();
-    }
+    }*/
+    int n = 1;
+    StackSize(n);
 }
 

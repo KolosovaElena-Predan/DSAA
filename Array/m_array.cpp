@@ -7,70 +7,11 @@
 #include <string> 
 #include <assert.h>
 #include <chrono>
+#include "m_array.h"
 using namespace std::chrono;
 
 
-template <typename T>
-/// заполняет массив случайными числами
-/// \param arr массив
-/// \param n размер массива
-/// \param min минимально возможное число в массиве
-/// \param max максимально возможное число в массве
-/// \return ничего
-void array_fill_randomly(T* arr, unsigned n, T min, T max) {
-    //srand(time(NULL));
-    T Mrange = max - min; //диапазон рандома
-    for (unsigned i = 0; i < n; i++)
-        arr[i] = (((T)rand() / RAND_MAX) * Mrange) + min;
-}
 
-template <typename T>
-/// выводит массив в файл
-/// \param arr массив
-/// \param n размер массива
-/// \param FileName файл, куда выводится массив
-/// \return ничего, но в файл выводиться массив
-void output_to_file(const T* arr, unsigned n, const std::string& FileName) {
-    std::ofstream file;
-    file.open(FileName);
-    if (file.is_open()) {
-        for (unsigned i = 0; i < n; i++) {
-            file << arr[i];
-            if (i != n - 1)
-                file << std::endl;
-        }
-    }
-    else
-        throw std::invalid_argument("File not found");
-    file.close();
-
-}
-
-template <typename T>
-/// проверяет отсортирован ли массив по возрастанию
-/// \param arr массив
-/// \param n размер массива
-/// \return ничего, но в файл выводиться массив
-bool checking_for_increasing(const T* arr, unsigned n) {
-    for (unsigned int i = 1; i < n; i++) {
-        if (arr[i] < arr[i - 1])
-            return false;
-    }
-    return true;
-}
-
-template <typename T>
-/// проверяет отсортирован ли массив по убыванию
-/// \param arr массив
-/// \param n размер массива
-/// \return ничего, но в файл выводиться массив
-bool checking_for_descending(const T* arr, unsigned n) {
-    for (unsigned int i = 1; i < n; i++) {
-        if (arr[i] > arr[i - 1])
-            return false;
-    }
-    return true;
-}
 
 /// Тест функции checking_for_increasing
 void Test_checking_for_increasing() {
@@ -79,9 +20,17 @@ void Test_checking_for_increasing() {
     assert(checking_for_increasing(c, 6) == true);
     delete[] c;
 
-    double* d = new double[6] {1, 6, 3, 5, 5, 6};
+    double* d = new double[6] {9, 1, 2, 3, 4, 5};
     assert(checking_for_increasing(d, 6) == false);
     delete[] d;
+
+    double* d1 = new double[6] {1, 2, 3, 4, 6, 5};
+    assert(checking_for_increasing(d1, 6) == false);
+    delete[] d1;
+
+    double* d2 = new double[6] {1, 2, 3, 1, 5, 6};
+    assert(checking_for_increasing(d2, 6) == false);
+    delete[] d2;
 
     int* a = new int[3] {1, 6, 3};
     assert(checking_for_increasing(a, 3) == false);
@@ -108,9 +57,17 @@ void Test_сhecking_for_descending() {
     assert(checking_for_descending(c, 6) == true);
     delete[] c;
 
-    double* d = new double[6] {1, 6, 3, 5, 5, 6};
+    double* d = new double[6] {1, 6, 5, 4, 3, 2};
     assert(checking_for_descending(d, 6) == false);
     delete[] d;
+
+    double* d1 = new double[6] {6, 5, 4, 3, 2, 15};
+    assert(checking_for_descending(d1, 6) == false);
+    delete[] d1;
+
+    double* d2 = new double[6] {6, 5, 28, 3, 2, 1};
+    assert(checking_for_descending(d2, 6) == false);
+    delete[] d2;
 
     int* a = new int[3] {1, 6, 3};
     assert(checking_for_descending(a, 3) == false);
@@ -145,21 +102,8 @@ auto t1 = steady_clock::now();
 auto delta = duration_cast<milliseconds>(t1 - t0);
 
 
-template <typename T>
-/// находит заданнный элемент в массиве методом последовательного поиска
-/// \param arr массив
-/// \param n размер массива
-/// \param key элемент, который необходимо найти
-/// \return первое вхождение key в arr; если его нет, то -1
-int Search(T* arr, unsigned n, T key) {
-    for (int i = 0; i < n; i++) {
-        if (arr[i] == key) {
-            return i;
-        }
-    }
-    return -1;
-}
 
+//тест функции Search
 void Test_Search() {
     double* c = new double[3] {1, 2, 3};
     assert(Search(c, 3, 1.0) == 0);
@@ -183,66 +127,36 @@ void Test_Search() {
 }
 
 
-template <typename T>
-/// находит заданнный элемент в массиве методом бинарного поиска
-/// \param arr массив
-/// \param n размер массива
-/// \param key элемент, который необходимо найти
-/// \return первое вхождение key в arr; если его нет, то -1
-int Search_bin(T* arr, unsigned n, T key) {
-    //Bubble_sort(arr, n);
 
-    bool flag = false;
-    int left = 0; // левая граница
-    int right = n - 1; // правая граница
-    int middle; //индекс середины массива
-
-    while ((left <= right) && (flag != true)) {
-        middle = (left + right) / 2; // определяем индекс середины
-        if (arr[middle] == key) {
-            flag = true; //проверяем ключ со серединным элементом
-            return middle;
-        }
-        //узнаём какую часть нужно отбросить
-        if (arr[middle] > key)
-            right = middle - 1;
-        else left = middle + 1;
-    }
-    return -1;
-}
-
+///тест фунуции Search_bin
 void Test_Search_bin() {
     double* c = new double[3] {1, 2, 3};
     assert(Search_bin(c, 3, 1.0) == 0);
     delete[] c;
 
+    double* c1 = new double[5] {1, 2, 3, 4, 5};
+    assert(Search_bin(c1, 5, 3.0) == 2);
+    delete[] c1;
+
+    double* c2 = new double[5] {1, 2, 3, 6, 8};
+    assert(Search_bin(c2, 5, 8.0) == 4);
+    delete[] c2;
+
+    double* c3 = new double[7] {1, 2, 3, 45, 72, 134, 900};
+    assert(Search_bin(c3, 7, 4.0) ==-1);
+    delete[] c3;
+
     int* a = new int[4] {1, 2, 3, 4};
     assert(Search_bin(a, 4, 3) == 2);
     delete[] a;
-
 
     char* n1 = new char[4] {'a', 'b', 'c', 'd'};
     assert(Search(n1, 4, 'd') == 3);
     delete[] n1;
 }
 
-template <typename T>
-/// пузырьковая сортировка по возрастанию
-/// \param arr массив
-/// \param n размер массива
-/// \return ничего, но сортирует по возрастанию arr
-void Bubble_sort(T* arr, unsigned n) {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < (n - 1); j++) {
-            if (arr[j] > arr[j + 1]) {
-                T b = arr[j]; // промежуточная переменная
-                arr[j] = arr[j + 1];
-                arr[j + 1] = b;
-            }
-        }
-    }
-}
 
+///тест функции Bubble_sort
 void Test_Bubble_sort() {
     double* c = new double[3] {3, 2, 1};
     Bubble_sort(c, 3);
@@ -281,6 +195,82 @@ void Test_Bubble_sort() {
     delete[] n;
 }
 
+///тест функции Search_interpol
+void Test_Search_interpol() {
+    double* c = new double[3] {1, 2, 3};
+    assert(Search_interpol(c, 3, 1.0) == 0);
+    delete[] c;
+
+    double* c1 = new double[5] {1, 2, 3, 4, 5};
+    assert(Search_interpol(c1, 5, 3.0) == 2);
+    delete[] c1;
+
+    double* c2 = new double[5] {1, 2, 3, 6, 8};
+    assert(Search_interpol(c2, 5, 8.0) == 4);
+    delete[] c2;
+
+    double* c3 = new double[7] {1, 2, 3, 45, 72, 134, 900};
+    assert(Search_interpol(c3, 7, 4.0) == -1);
+    delete[] c3;
+
+    int* a = new int[4] {1, 2, 3, 4};
+    assert(Search_interpol(a, 4, 3) == 2);
+    delete[] a;
+
+    char* n1 = new char[4] {'a', 'b', 'c', 'd'};
+    assert(Search_interpol(n1, 4, 'd') == 3);
+    delete[] n1;
+}
+
+///тест функции Merge_sort
+void Test_Merge_sort() {
+    double* c = new double[3] {3, 2, 1};
+    Merge_sort(c,0, 2);
+    assert(c[0] == 1.0);
+    assert(c[1] == 2.0);
+    assert(c[2] == 3.0);
+    delete[] c;
+
+    double* d = new double[3] {2, 3, 1};
+    Merge_sort(d,0, 2);
+    assert(d[0] == 1.0);
+    assert(d[1] == 2.0);
+    assert(d[2] == 3.0);
+    delete[] d;
+
+    double* d2 = new double[5] {2, 3, 1, 5, 4};
+    Merge_sort(d2,0, 4);
+    assert(d2[0] == 1.0);
+    assert(d2[1] == 2.0);
+    assert(d2[2] == 3.0);
+    assert(d2[3] == 4.0);
+    assert(d2[4] == 5.0);
+    delete[] d2;
+
+    int* a = new int[3] {1, 6, 3};
+    Merge_sort(a,0, 2);
+    assert(a[0] == 1);
+    assert(a[1] == 3);
+    assert(a[2] == 6);
+    delete[] a;
+
+
+    int* a1 = new int[3] {-1, -2, -6};
+    Merge_sort(a1,0, 2);
+    assert(a1[0] == -6);
+    assert(a1[1] == -2);
+    assert(a1[2] == -1);
+    delete[] a1;
+
+    char* n = new char[4] {'d', 'c', 'b', 'a'};
+    Merge_sort(n,0, 3);
+    assert(n[0] == 'a');
+    assert(n[1] == 'b');
+    assert(n[2] == 'c');
+    assert(n[3] == 'd');
+    delete[] n;
+}
+
 ///Тест всех функций модуля
 void Test_function() {
     Test_Bubble_sort();
@@ -288,4 +278,6 @@ void Test_function() {
     Test_Search();
     Test_сhecking_for_descending();
     Test_checking_for_increasing();
+    Test_Search_interpol();
+    Test_Merge_sort();
 }

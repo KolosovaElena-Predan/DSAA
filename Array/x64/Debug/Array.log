@@ -1,2 +1,41 @@
 ﻿  Array.cpp
+  m_array.cpp
+F:\DSAA\Array\m_array.h(115,15): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+F:\DSAA\Array\m_array.cpp(134,5): message : выполняется компиляция ссылки на экземпляр шаблон функции "int Search_bin<double>(T *,size_t,T)"
+          with
+          [
+              T=double
+          ]
+F:\DSAA\Array\m_array.h(166,15): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+F:\DSAA\Array\m_array.cpp(200,5): message : выполняется компиляция ссылки на экземпляр шаблон функции "int Search_interpol<double>(T *,size_t,T)"
+          with
+          [
+              T=double
+          ]
+F:\DSAA\Array\m_array.h(172,23): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=double
+          ]
+F:\DSAA\Array\m_array.h(206,31): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=double
+          ]
+F:\DSAA\Array\m_array.h(234,13): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Merge<T>(T *,int,int)"
+          with
+          [
+              T=double
+          ]
+F:\DSAA\Array\m_array.cpp(227,5): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Merge_sort<double>(T *,int,int)"
+          with
+          [
+              T=double
+          ]
+F:\DSAA\Array\m_array.h(211,31): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=double
+          ]
+  Создание кода...
   Array.vcxproj -> F:\DSAA\Array\x64\Debug\Array.exe

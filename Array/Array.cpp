@@ -15,13 +15,14 @@ int main()
 {
     Test_function();
 
-    long long n = 10000000000;
+    /*long long n = 100000000;
     long long* c = new long long[n];
     for (long long i = 0; i < n; i++) {
         c[i] = i;
     }
-
-    for (int i = 0; i < 10; i++) {
+    int l = 10000;
+    long long s=0;
+    for (int i = 0; i < l; i++) {
         // определение начального момента времени
         auto t0 = steady_clock::now();
 
@@ -34,6 +35,8 @@ int main()
         // преобразование времени (обычно наносекунды) в миллисекунды
         auto delta = duration_cast<milliseconds>(t1 - t0);
 
-        std::cout << delta.count() << " ";
+        s = s + delta.count();
+
     }
+    std::cout << s / 1000;*/
 }
