@@ -1,3 +1,3 @@
 ﻿  Algorithm_analysis.cpp
-F:\DSAA\Algorithm_analysis\Algorithm_analysis.cpp(168,32): warning C4018: <: несоответствие типов со знаком и без знака
+F:\DSAA\Algorithm_analysis\Algorithm_analysis.cpp(137,36): warning C4018: <: несоответствие типов со знаком и без знака
   Algorithm_analysis.vcxproj -> F:\DSAA\Algorithm_analysis\x64\Debug\Algorithm_analysis.exe

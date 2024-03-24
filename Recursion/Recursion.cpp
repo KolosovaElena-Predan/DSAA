@@ -35,16 +35,18 @@ void Test_C() {
     assert(C(1, 25) == 25);
 }
 
-int main()
-{
-    /*Test_C();
-    try {
-        std::cout << C(2, 4);
+int main(int argc, char* argv[]) {
+    if (argc == 1) { // если в аргументах только имя программы
+        std::cout << "no arguments!" << std::endl; // выводим, что нет аргументов
     }
-    catch (const std::invalid_argument& error) {
-        std::cout << error.what();
-    }*/
-    int n = 1;
-    StackSize(n);
+    else {
+        int m = atoi(argv[2]);
+        int n = atoi(argv[3]);
+        std::cout << C(m, n);
+    }
+
+    return 0;
 }
+    /*int n = 1;
+    StackSize(n);*/
 

@@ -113,11 +113,54 @@ void Test_two_max() {
 }
 
 
-int main()
+int main(int argc, char* argv[])
 {
     Test_min();
     Test_two_max();
-    int n = 10; //размер массива
+    if (argc == 1) { // если в аргументах только имя программы
+        std::cout << "no arguments!" << std::endl; // выводим, что нет аргументов 
+    }
+    else {
+        int n = atoi(argv[1]);
+        int *arr = new int(n);
+        for (int i = 2; i < argc - 1; i++) {
+            arr[i - 2] = atoi(argv[i]);
+        }
+        double max = arr[0]; //максимум
+        double min1 = min(arr, n); //минимум
+        int c = 0; //счётчик сравнений
+
+
+        double max2 = min1;
+
+        //находим максимум и второе число после него и считаем сравнения
+        for (unsigned int i = 1; i < n; i++) {
+            if (arr[i] > max) {
+                max2 = max;
+                max = arr[i];
+                c = c + 1;
+            }
+            else {
+                if ((arr[i] > max2) && (arr[i] != max)) {
+                    max2 = arr[i];
+                }
+                c = c + 3;
+            }
+        }
+
+        std::ofstream file;
+        file.open("5.txt", std::ios::app);
+        file << std::endl << std::endl << "Кол-во сравнений: " << c << std::endl << "Второй максимум: " << max2 << std::endl << "Массив:";
+        file.close();
+
+        arr_output_to_file(arr, n, "5.txt");
+
+        std::cout << max2;
+
+    }
+
+    //return 0;
+    //int n = 10; //размер массива
     //double* arr = new double[n] {1, 2, 3};
     //double* arr = new double[n] {1, 3, 2};
     //double* arr = new double[n] {2, 1, 3};
@@ -148,20 +191,13 @@ int main()
     //double* arr = new double[n] {4, 2, 1, 3};
     //double* arr = new double[n] {4, 2, 3, 1};
     //double* arr = new double[n] {4, 3, 1, 2};
-    double* arr = new double[n] {10, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    //double* arr = new double[n] {10, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 
-    double max = arr[0]; //максимум
+    /*double max = arr[0]; //максимум
     double min1 = min(arr, n); //минимум
     int c = 0; //счётчик сравнений
 
-    /*///нахождение минимума
-    for (unsigned int i = 1; i < n; i++) {
-        if (arr[i] < min) {
-            min = arr[i];
-        }
-        c = c + 1;
-    }*/
 
     double max2 = min1;
 
@@ -187,6 +223,6 @@ int main()
 
     arr_output_to_file(arr, n, "2.txt");
 
-    std::cout << max2;
+    std::cout << max2;*/
 }
 

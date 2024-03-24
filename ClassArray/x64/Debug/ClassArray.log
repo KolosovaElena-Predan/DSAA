@@ -1,0 +1,7 @@
+﻿  Array.cpp
+F:\DSAA\ClassArray\Array.cpp(54,12): warning C4244: =: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+  ClassArray.vcxproj -> F:\DSAA\ClassArray\x64\Debug\ClassArray.exe

@@ -1,0 +1,2 @@
+C:\Users\kolos\Desktop\ClassArray\x64\Debug\ClassArray.exe
+F:\DSAA\ClassArray\x64\Debug\ClassArray.exe
