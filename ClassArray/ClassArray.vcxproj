@@ -127,10 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Array\m_array.cpp" />
     <ClCompile Include="Array.cpp" />
     <ClCompile Include="ClassArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Array\m_array.h" />
     <ClInclude Include="Array.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

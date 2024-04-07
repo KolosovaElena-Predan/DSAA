@@ -1,7 +1,46 @@
 ﻿  Array.cpp
-F:\DSAA\ClassArray\Array.cpp(54,12): warning C4244: =: преобразование "double" в "T", возможна потеря данных
+F:\DSAA\ClassArray\m_array.h(293,22): warning C4267: =: преобразование из "size_t" в "T"; возможна потеря данных
+          with
+          [
+              T=char
+          ]
+F:\DSAA\ClassArray\Array.h(153,3): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Shell_sort<T>(T *,size_t)"
+          with
+          [
+              T=char
+          ]
+F:\DSAA\ClassArray\Array.h(151,7): message : во время компиляции функции-члена класс шаблон "void Array<char>::Sort(void)"
+F:\DSAA\ClassArray\Array.cpp(82,9): message : см. первую ссылку на "Array<char>::Sort" в "Test_Sort"
+F:\DSAA\ClassArray\Array.cpp(24,17): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Array<char>"
+F:\DSAA\ClassArray\m_array.h(285,24): warning C4244: =: преобразование "T" в "size_t", возможна потеря данных
+          with
+          [
+              T=double
+          ]
+F:\DSAA\ClassArray\Array.h(153,3): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Shell_sort<T>(T *,size_t)"
+          with
+          [
+              T=double
+          ]
+F:\DSAA\ClassArray\Array.h(151,7): message : во время компиляции функции-члена класс шаблон "void Array<double>::Sort(void)"
+F:\DSAA\ClassArray\Array.cpp(66,9): message : см. первую ссылку на "Array<double>::Sort" в "Test_Sort"
+F:\DSAA\ClassArray\Array.cpp(15,19): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Array<double>"
+F:\DSAA\ClassArray\m_array.h(293,22): warning C4244: =: преобразование "size_t" в "T", возможна потеря данных
+          with
+          [
+              T=double
+          ]
+F:\DSAA\ClassArray\m_array.h(293,22): warning C4267: =: преобразование из "size_t" в "T"; возможна потеря данных
           with
           [
               T=int
           ]
+F:\DSAA\ClassArray\Array.h(153,3): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Shell_sort<T>(T *,size_t)"
+          with
+          [
+              T=int
+          ]
+F:\DSAA\ClassArray\Array.h(151,7): message : во время компиляции функции-члена класс шаблон "void Array<int>::Sort(void)"
+F:\DSAA\ClassArray\Array.cpp(43,8): message : см. первую ссылку на "Array<int>::Sort" в "Test_Sort"
+F:\DSAA\ClassArray\Array.cpp(6,15): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Array<int>"
   ClassArray.vcxproj -> F:\DSAA\ClassArray\x64\Debug\ClassArray.exe

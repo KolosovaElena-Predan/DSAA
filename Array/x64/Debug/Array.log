@@ -1,4 +1,5 @@
-﻿  m_array.cpp
+﻿  Array.cpp
+  m_array.cpp
 F:\DSAA\Array\m_array.h(177,23): warning C4244: =: преобразование "T" в "size_t", возможна потеря данных
           with
           [
@@ -44,4 +45,5 @@ F:\DSAA\Array\m_array.cpp(317,5): message : выполняется компил�
           [
               T=char
           ]
+  Создание кода...
   Array.vcxproj -> F:\DSAA\Array\x64\Debug\Array.exe

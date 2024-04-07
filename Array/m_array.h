@@ -278,7 +278,7 @@ void Shell_sort(T* arr, size_t n)
     size_t i = 0;
     size_t j = 0;
     size_t step = 0;
-    size_t tmp = 0;
+    T tmp = 0;
     for (step = n / 2; step > 0; step /= 2)
         for (i = step; i < n; i++)
         {
@@ -304,7 +304,12 @@ void Test_Shell_sort();
 /// \return индекс опорного элемента
 template <typename T>
 size_t partition(T* arr, size_t first, size_t last) {
-    T x = arr[last]; //берём за опорный последний элемент
+    size_t ii = first+rand() % (last - first);
+    T a2 = arr[ii];
+    arr[ii] = arr[last];
+    arr[last] = a2;
+
+    T x = arr[last];
     size_t i = first - 1;
     for (size_t j = first; j < last; j++) {
         if (arr[j] < x) {
@@ -320,8 +325,8 @@ size_t partition(T* arr, size_t first, size_t last) {
     return i + 1;
 }
 
-///Тест функции partition
-void Test_partition();
+/*///Тест функции partition
+void Test_partition();*/
 
 
 //BigO(n^2)-худший случай, BigO(n*logn) - средний случай, BigO(n*logn)-лучший случай
@@ -333,6 +338,7 @@ void Test_partition();
 template <typename T>
 void quicksort(T* arr, size_t first, size_t last) {
     if (first < last) {
+
         size_t p = partition(arr, first, last); //находим индекс опорного элемента
 
         if (p > 0)

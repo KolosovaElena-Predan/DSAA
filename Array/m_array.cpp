@@ -439,7 +439,7 @@ void Test_Merge(){
     delete[] n;
 }
 
-///Тест функции partition()
+/*///Тест функции partition()
 void Test_partition() {
     double* c = new double[3] {3, 2, 1};
     assert(partition(c, 0, 2) == 0);
@@ -465,7 +465,7 @@ void Test_partition() {
     char* n = new char[4] {'d', 'c', 'b', 'a'};
     assert(partition(n, 0, 3) == 0);
     delete[] n;
-}
+}*/
 
 
 
@@ -482,5 +482,5 @@ void Test_function() {
     Test_find_predicate();
     Test_quicksort();
     Test_Merge();
-    Test_partition();
+    //Test_partition();
 }

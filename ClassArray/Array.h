@@ -3,6 +3,12 @@
 /// удаления последнего элемента
 #pragma once
 #include <iostream>
+#include <algorithm>
+#include <iterator>
+#include <vector>
+#include "m_array.h"
+
+
 template <typename T>
 class Array
 {
@@ -26,7 +32,8 @@ public:
 		array = nullptr;
 	}
 
-	///Резервирование памяти под n элемнтов
+	///Резервирование памяти под n элемнтов.
+	///Бросает исключение, invalid_argument если параметр n равен нулю
 	Array(size_t n) {
 		if (n > 0) {
 			size = n;
@@ -37,24 +44,48 @@ public:
 	}
 
 	///перегрузка оператора []
+	///Бросает исключение, invalid_argument, если  index превышает last
 	T& operator[](size_t index) {
-		if (index <= size) {
+		if (index <= last) {
 			return array[index];
 		}
 		else throw std::invalid_argument("Invalid index value");
 	}
+	
 
-	///Изменение кол-ва элементов в массиве
+	///Изменение размера массива
+	///Бросает исключение, invalid_argument если параметр n равен нулю
 	void resize(size_t new_value) {
-		if (new_value <= size) {
-			last = new_value;
+		if (new_value > 0) {
+			T* new_array= new T[new_value]; //для копирования значений
+			size_t qelem = 0; //хранит размер 
+			size_t l = 0; //хранит первоначальное значение last
+			if (new_value > size) {
+				qelem = size;
+				l = last;
+			}
+			else {
+				qelem = new_value;
+				l = new_value-1;
+			}
+			std::copy(array, array + qelem, new_array);
+			delete[] array;
+			array = new_array;
+			last = l;
+			size = new_value;
 		}
-		else throw std::invalid_argument("Invalid index value");
+		else throw std::invalid_argument("Invalid size value");
 	}
+	
 
 	///Возвращает кол-во элементов в массиве
-	size_t lenght() {
+	size_t lenght() const{
 		return last;
+	}
+
+	///Возрращает под сколько элементов выделена память в массиве
+	size_t get_size() const {
+		return size;
 	}
 
 	///Добавляет элемент new_element в конец массива
@@ -79,7 +110,26 @@ public:
 		}
 	}
 
+	///Добавляет элемент new_element в позицию index
+	void add(T new_element,  size_t index) {
+		if (index=last) { 
+			add(new_element);
+		}
+		else { 
+			if (index < last&&last+1<=size) {
+				T* a = new T[size];
+				memmove(a, array, sizeof(T) * (index - 1));
+				a[index] = new_element;
+				memmove(a + sizeof(T) * index, array + sizeof(T) * index, sizeof(T) * (last - index));
+				last = last + 1;
+				memmove(array, a, sizeof(a));
+				delete[] a;
+			}
+		}
+	}
+
 	///Удаляет последний элемент массива
+	///Бросает исключение, invalid_argument если массив не содержит элементов
 	void del() {
 		if (last != 0) {
 			last = last - 1;
@@ -92,42 +142,21 @@ public:
 	}
 
 	///Возвращает индекс первого вхождения значения key в массиве. Если такого нет, то возвращает -1
-	long long Search(T key) {
-		for (size_t i = 0; i < last; i++) {
-			if (array[i] == key) {
-				return i;
-			}
-		}
-		return -1;
+	long long SearchInArray(T key) const{
+		return Search(array, last, key);
 	}
 
 
 	///Сортирует массив по возрастанию(сортировка Шелла)
 	void Sort()
 	{
-		size_t i = 0;
-		size_t j = 0;
-		size_t step = 0;
-		T tmp = 0;
-		for (step = last / 2; step > 0; step /= 2)
-			for (i = step; i < last; i++)
-			{
-				tmp = array[i];
-				for (j = i; j >= step; j -= step)
-				{
-					if (tmp < array[j - step])
-						array[j] = array[j - step];
-					else
-						break;
-				}
-				array[j] = tmp;
-			}
+		Shell_sort(array, last);
 	}
 
 
 	///Деструктор
 	~Array() {
-		if (array = nullptr)
+		if (array == nullptr)
 			delete array;
 		else
 			delete[] array;
@@ -151,4 +180,7 @@ void Test_del();
 
 ///Тест методов
 void Test();
+
+///Тест изменения размера массива
+void Test_resize();
 
