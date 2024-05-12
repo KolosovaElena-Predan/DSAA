@@ -1,0 +1,15 @@
+﻿  ClassQueue.cpp
+  DoublyLinkedList.cpp
+  Queue.cpp
+C:\Users\kolos\Desktop\ClassQueue\Queue.cpp(100,9): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=double
+          ]
+C:\Users\kolos\Desktop\ClassQueue\Queue.cpp(111,9): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=double
+          ]
+  Создание кода...
+  ClassQueue.vcxproj -> C:\Users\kolos\Desktop\ClassQueue\x64\Debug\ClassQueue.exe
